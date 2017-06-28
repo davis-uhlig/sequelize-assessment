@@ -15,7 +15,7 @@ router.get("/", function(req, res){
 const getTodo = function(req, res, next) {
   models.Todos.findById(req.params.todoid).then(function(toDo) {
     if (toDo) {
-      req.toDo = todo;
+      req.toDo = toDo;
       next();
     } else {
       res.status(404).send("Not Found");
@@ -56,7 +56,7 @@ const todoItem = {
 });
 
 router.post("/:todoid/delete", getTodo, function(req, res) {
-  req.todo.destroy().then(function() {
+  req.toDo.destroy().then(function() {
     res.redirect("/");
   });
 });
