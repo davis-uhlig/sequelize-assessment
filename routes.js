@@ -55,7 +55,7 @@ const todoItem = {
   // }
 });
 
-router.post("/students/:todoid/delete", getTodo, function(req, res) {
+router.post("/:todoid/delete", getTodo, function(req, res) {
   req.todo.destroy().then(function() {
     res.redirect("/");
   });

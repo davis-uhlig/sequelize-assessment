@@ -16,7 +16,7 @@
       <h1>To Do List</h1>
       <p>Click on your todo to move it to move it to your completed tasks!</p>
       {{#todos}}
-      <form class="incomplete" action="/" method="post">
+      <form class="incomplete" action="/{{id}}/delete" method="post">
         <!-- <input type="submit" name="incomplete" value="{{.}}"> -->
         <span>{{todo}}</span>
         <button type="submit">Delete</button>
