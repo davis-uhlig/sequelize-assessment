@@ -5,6 +5,7 @@ const models = require('./models');
 // toDo = [];
 completedList = [];
 
+
 router.get("/", function(req, res){
   models.Todos.findAll().then(function(todos){
     res.render("index", {todos: todos});
@@ -25,10 +26,15 @@ const getTodo = function(req, res, next) {
 
 router.post("/", function(req, res){
 
+  // completed = {
+  //   complete: false;
+  // };
+
 req.checkBody("newTodo", "You must enter a new todo").notEmpty();
 
 const todoItem = {
-  todo: req.body.newTodo
+  todo: req.body.newTodo,
+  completed: false
 };
 
   req.getValidationResult().then(function(result){
@@ -44,6 +50,7 @@ const todoItem = {
 
 
 
+
   // if(req.body.newTodo){
   // toDo.push(req.body.newTodo);
   // res.redirect("/");
@@ -54,6 +61,16 @@ const todoItem = {
   //   res.redirect("/")
   // }
 });
+
+router.post("/:todoid/complete", getTodo, function(req, res){
+
+  req.toDo.completed = true;
+  console.log(req.toDo.completed);
+  req.toDo.save();
+  res.redirect("/");
+})
+
+
 
 router.post("/:todoid/delete", getTodo, function(req, res) {
   req.toDo.destroy().then(function() {

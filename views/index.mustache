@@ -16,23 +16,36 @@
       <h1>To Do List</h1>
       <!-- <p>Click on your todo to move it to move it to your completed tasks!</p> -->
       {{#todos}}
+
+      <!-- <form class="incomplete" action="/{{id}}/delete" method="post">
+        <input type="submit" name="incomplete" value="{{.}}">
+        {{^completed}}
+
+      </form> -->
+      <span>{{todo}}</span>
+      <form action="/{{id}}/complete" method="post">
+        <button type="submit">Mark As Complete</button>
+      </form>
+      {{/completed}}
+      {{/todos}}
+      <!-- <form action="/" method="post">
+        <button type="submit">Mark As Complete</button>
+      </form> -->
+    </div>
+    <div>
+      <h1>Completed Tasks</h1>
+      {{#todos}}
+      {{#completed}}
+      <!-- <p>{{todo}}</p> -->
       <form class="incomplete" action="/{{id}}/delete" method="post">
         <!-- <input type="submit" name="incomplete" value="{{.}}"> -->
         <span>{{todo}}</span>
         <button type="submit">Delete</button>
 
       </form>
+      {{/completed}}
       {{/todos}}
-
     </div>
-    <!-- <div>
-      <h1>Completed Tasks</h1>
-      {{#completedList}}
-      <form class="complete">
-        <label for="check">{{.}}</label>
-      </form>
-      {{/completedList}}
-    </div> -->
 
   </body>
 </html>
